@@ -45,6 +45,29 @@ for (const page of pages) {
   assert(html.includes(`href="${site.url}${page.route}"`), `${page.output}: canonical URL is wrong`);
   assert(!html.includes('lang="ru"'), `${page.output}: Russian language marker found`);
   assert(!html.includes("Lorem ipsum"), `${page.output}: placeholder copy found`);
+  assert(!html.includes("{***}"), `${page.output}: publication placeholder found`);
+
+  if (page.id === "home") {
+    assert(html.includes("Adults 18+"), `${page.output}: adult-only label is missing`);
+  }
+  if (page.id === "privacy-policy") {
+    assert(html.includes("Adults-only service"), `${page.output}: adult-only privacy section is missing`);
+    assert(html.includes("Google Play purchases"), `${page.output}: purchase disclosure is missing`);
+    assert(
+      !html.includes("does not currently perform technical age verification"),
+      `${page.output}: obsolete age-verification statement found`,
+    );
+  }
+  if (page.id === "terms") {
+    assert(html.includes("at least 18"), `${page.output}: adult eligibility terms are missing`);
+    assert(html.includes("Lifetime Premium"), `${page.output}: purchase terms are missing`);
+  }
+  if (page.id === "account-deletion") {
+    assert(
+      html.includes("Detached Google Play purchase-verification record"),
+      `${page.output}: retained purchase-record disclosure is missing`,
+    );
+  }
 
   for (const match of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
     const target = match[1];

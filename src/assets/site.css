@@ -1290,20 +1290,6 @@ a {
   margin-bottom: 0;
 }
 
-.placeholder {
-  display: inline-flex;
-  align-items: center;
-  border: 1px dashed #c67b09;
-  border-radius: 7px;
-  background: #fff4d9;
-  color: #8a5100;
-  padding: 0 5px;
-  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
-  font-size: 0.9em;
-  font-weight: 750;
-  white-space: nowrap;
-}
-
 .policy-table-wrap {
   margin: 22px 0;
   overflow-x: auto;

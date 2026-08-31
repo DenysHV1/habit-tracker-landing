@@ -47,23 +47,13 @@ https://denyshv1.github.io/habit-tracker-landing/
 The workflow builds and validates the site before every deployment. A custom
 domain can be connected later in **Settings → Pages**.
 
-## Required placeholders
+## Publication details
 
-`{***}` means that the information is not confirmed in the application
-repositories. Find all placeholders with:
-
-```text
-rg -n "ph\(\)|\{\*\*\*\}" src scripts README.md
-```
-
-The `publication` object near the top of `src/content.mjs` holds the shared
-operator, contact and minimum-age values. Every legal page uses those same
-values. The operator and monitored contact are confirmed; the generated `dist`
-pages retain `{***}` only for the pending minimum-age decision.
-
-Before giving these URLs to Google Play, replace the remaining minimum-age
-placeholder and keep it consistent with the Google Play target-audience
-declaration.
+The shared `publication` object near the top of `src/content.mjs` contains the
+confirmed operator, monitored contact and minimum age. Habit Duel is intended
+only for adults aged 18 or older, and the same age limit is used throughout the
+English and Ukrainian legal pages. Keep it aligned with the Google Play target
+audience declaration.
 
 The site intentionally does not advertise Premium or in-app purchases because
 the current production application does not yet contain a complete Google Play
