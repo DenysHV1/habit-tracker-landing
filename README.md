@@ -11,9 +11,7 @@ site is static, has no runtime dependencies and is built for GitHub Pages.
 - `/support/` — support contacts and FAQ;
 - `/terms/` — Terms of Service;
 - `/community-guidelines/` — user-generated content and community standards;
-- `/child-safety/` — child-safety standards and reporting process;
 - `/404.html` — branded error page;
-- `/app-ads.txt` — AdMob publisher declaration placeholder.
 
 Every page contains English and Ukrainian. English is used on the first visit;
 the language changes only after the visitor chooses it manually.
@@ -58,23 +56,14 @@ repositories. Find all placeholders with:
 rg -n "ph\(\)|\{\*\*\*\}" src scripts README.md
 ```
 
-`ph()` is the shared visual placeholder used throughout `src/content.mjs`;
-the surrounding text identifies which real value belongs there. The generated
-`dist` pages contain the literal `{***}` value.
+The `publication` object near the top of `src/content.mjs` holds the shared
+operator, contact and minimum-age values. Every legal page uses those same
+values. The operator and monitored contact are confirmed; the generated `dist`
+pages retain `{***}` only for the pending minimum-age decision.
 
-Before giving these URLs to Google Play, replace every public placeholder with
-verified operational information, especially:
-
-- operator's legal name, postal address and country;
-- support, privacy, safety, child-safety and appeal contacts;
-- secure external account-deletion form or monitored deletion email;
-- identity-verification method and response times;
-- minimum age, target audience and any parental-consent process;
-- launch markets, governing law, courts and EU trader/representative details;
-- hosting, Supabase and email regions/providers;
-- backup, log, Sentry, moderation and purchase-record retention periods;
-- Google Play listing URL;
-- AdMob publisher ID in `src/static/app-ads.txt`.
+Before giving these URLs to Google Play, replace the remaining minimum-age
+placeholder and keep it consistent with the Google Play target-audience
+declaration.
 
 The site intentionally does not advertise Premium or in-app purchases because
 the current production application does not yet contain a complete Google Play
@@ -96,9 +85,11 @@ EXPO_PUBLIC_SUPPORT_EMAIL
 Use the final HTTPS addresses and a monitored email. The account-deletion page
 must offer a working request method outside the installed application.
 
-`app-ads.txt` must ultimately be served from the root of the developer website
-domain. A GitHub project URL serves it under `/habit-tracker-landing/`; use a
-custom domain or a GitHub user site before relying on it for AdMob verification.
+`app-ads.txt` is intentionally not published from this project path. AdMob
+checks the root hostname, while a GitHub project site would expose the file only
+under `/habit-tracker-landing/`. Add a real publisher declaration only after an
+AdMob account exists and the file can be served from a custom domain or GitHub
+user site root.
 
 ## Project structure
 

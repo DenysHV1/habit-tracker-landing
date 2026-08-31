@@ -101,22 +101,6 @@
     if (event.key === "Escape") closeMenu();
   });
 
-  const toast = document.querySelector("[data-toast]");
-  let toastTimer;
-  const showToast = () => {
-    if (!toast) return;
-    window.clearTimeout(toastTimer);
-    toast.classList.add("is-visible");
-    toastTimer = window.setTimeout(() => toast.classList.remove("is-visible"), 3600);
-  };
-
-  for (const link of document.querySelectorAll("[data-placeholder-link]")) {
-    link.addEventListener("click", (event) => {
-      event.preventDefault();
-      showToast();
-    });
-  }
-
   for (const year of document.querySelectorAll("[data-current-year]")) {
     year.textContent = String(new Date().getFullYear());
   }

@@ -77,7 +77,6 @@ const renderFooter = (prefix) => `<footer class="site-footer">
         <ul class="footer-links">
           <li><a href="${prefix || "./"}">${languagePair(ui.navigation.home.en, ui.navigation.home.uk)}</a></li>
           <li><a href="${prefix || "./"}#features">${languagePair(ui.navigation.features.en, ui.navigation.features.uk)}</a></li>
-          <li><a href="#" data-placeholder-link>${languagePair("Google Play", "Google Play")} · <span class="placeholder">{***}</span></a></li>
         </ul>
       </div>
       <div class="footer-column">
@@ -87,15 +86,13 @@ const renderFooter = (prefix) => `<footer class="site-footer">
           <li><a href="${prefix}terms/">${languagePair(ui.navigation.terms.en, ui.navigation.terms.uk)}</a></li>
           <li><a href="${prefix}account-deletion/">${languagePair(ui.navigation.deletion.en, ui.navigation.deletion.uk)}</a></li>
           <li><a href="${prefix}community-guidelines/">${languagePair(ui.navigation.community.en, ui.navigation.community.uk)}</a></li>
-          <li><a href="${prefix}child-safety/">${languagePair(ui.navigation.childSafety.en, ui.navigation.childSafety.uk)}</a></li>
         </ul>
       </div>
       <div class="footer-column">
         <strong>${languagePair(ui.footer.help.en, ui.footer.help.uk)}</strong>
         <ul class="footer-links">
           <li><a href="${prefix}support/">${languagePair(ui.navigation.support.en, ui.navigation.support.uk)}</a></li>
-          <li><span>${languagePair("Support email", "Email підтримки")}: <span class="placeholder">{***}</span></span></li>
-          <li><span>${languagePair("Operator", "Оператор")}: <span class="placeholder">{***}</span></span></li>
+          <li><a href="${prefix}account-deletion/">${languagePair(ui.navigation.deletion.en, ui.navigation.deletion.uk)}</a></li>
         </ul>
       </div>
     </div>
@@ -145,7 +142,6 @@ const renderDocument = (page) => {
   ${header}
   <main id="main-content">${body}</main>
   ${footer}
-  <div class="toast" role="status" aria-live="polite" data-toast>${languagePair("Google Play URL: ", "Посилання Google Play: ")}<span class="placeholder">{***}</span></div>
   <script src="${prefix}assets/site.js" defer></script>
 </body>
 </html>`;

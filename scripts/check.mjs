@@ -74,7 +74,6 @@ for (const asset of [
   "site.webmanifest",
   "robots.txt",
   "sitemap.xml",
-  "app-ads.txt",
   ".nojekyll",
 ]) {
   try {
@@ -83,9 +82,6 @@ for (const asset of [
     failures.push(`Missing required asset: ${asset}`);
   }
 }
-
-const appAds = await readFile(path.join(dist, "app-ads.txt"), "utf8").catch(() => "");
-assert(appAds.includes("pub-{***}"), "app-ads.txt must visibly retain the unknown publisher ID");
 
 const sitemap = await readFile(path.join(dist, "sitemap.xml"), "utf8").catch(() => "");
 for (const page of pages.filter((entry) => !entry.excludeFromSitemap)) {

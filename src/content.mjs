@@ -8,6 +8,12 @@ const tx = (en, uk) =>
 
 const ph = () => '<span class="placeholder" title="Replace before publication">{***}</span>';
 
+const publication = {
+  operator: tx("Denys Harkusha", "Денис Гаркуша"),
+  contact: '<a href="mailto:gardenix@ukr.net">gardenix@ukr.net</a>',
+  minimumAge: ph(),
+};
+
 const icon = (name) => {
   const icons = {
     timer: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 1.5M9 2h6M12 2v3"/></svg>',
@@ -29,7 +35,6 @@ export const ui = {
     terms: { en: "Terms", uk: "Умови" },
     deletion: { en: "Delete account", uk: "Видалення акаунта" },
     community: { en: "Community", uk: "Спільнота" },
-    childSafety: { en: "Child safety", uk: "Безпека дітей" },
   },
   footer: {
     summary: {
@@ -52,10 +57,10 @@ const renderHome = ({ prefix }) => `<section class="hero">
         "Відстежуй звички за часом або кількістю, бач кожен день у контексті й рухайся далі без зайвого тиску.",
       )}</p>
       <div class="hero-actions">
-        <a class="button button-primary" href="#" data-placeholder-link>${icon("play")}${tx("Get it on Google Play", "Завантажити з Google Play")}</a>
+        <span class="button button-primary" aria-disabled="true">${icon("play")}${tx("Google Play · Coming soon", "Google Play · Незабаром")}</span>
         <a class="button button-secondary" href="#features">${tx("Explore features", "Переглянути можливості")}${icon("arrow")}</a>
       </div>
-      <p class="hero-note">${tx("Available in English and Ukrainian · Google Play link ", "Доступно англійською та українською · Посилання Google Play ")} ${ph()}</p>
+      <p class="hero-note">${tx("Available in English and Ukrainian · Android release is being prepared", "Доступно англійською та українською · Android-версія готується до випуску")}</p>
     </div>
     <div class="hero-art" aria-hidden="true">
       <picture>
@@ -186,7 +191,7 @@ const renderHome = ({ prefix }) => `<section class="hero">
   <div class="container">
     <div class="cta-panel reveal">
       <div><h2>${tx("A better routine can begin with one clear action.", "Кращий ритм може початися з однієї зрозумілої дії.")}</h2><p>${tx("Habit Duel is being prepared for Google Play. The final store link will appear here before release.", "Habit Duel готується до виходу в Google Play. Остаточне посилання з’явиться тут перед релізом.")}</p></div>
-      <a class="button button-primary" href="#" data-placeholder-link>${tx("Google Play", "Google Play")} · ${ph()}</a>
+      <span class="button button-primary" aria-disabled="true">${tx("Google Play · Coming soon", "Google Play · Незабаром")}</span>
     </div>
   </div>
 </section>`;
@@ -258,9 +263,9 @@ const privacyPage = {
     uk: "Політика конфіденційності Habit Duel щодо даних акаунта, звичок, кімнат, реклами, діагностики, зберігання та видалення.",
   },
   meta: [
-    { label: { en: "Effective date", uk: "Дата набрання чинності" }, value: ph() },
-    { label: { en: "Controller", uk: "Контролер" }, value: ph() },
-    { label: { en: "Privacy contact", uk: "Контакт із питань конфіденційності" }, value: ph() },
+    { label: { en: "Effective date", uk: "Дата набрання чинності" }, value: tx("August 31, 2026", "31 серпня 2026") },
+    { label: { en: "Controller", uk: "Контролер" }, value: publication.operator },
+    { label: { en: "Privacy contact", uk: "Контакт із питань конфіденційності" }, value: publication.contact },
   ],
   intro: {
     en: "This Privacy Policy explains how the operator of Habit Duel processes personal data when you use the mobile application, this website and related support channels. It must be read together with the Terms of Service and Community Guidelines.",
@@ -270,9 +275,9 @@ const privacyPage = {
     {
       id: "who-we-are",
       title: { en: "1. Who we are", uk: "1. Хто ми" },
-      body: `<p>${tx("Habit Duel is operated by ", "Оператор Habit Duel — ")}${ph()}${tx(", registered at ", ", зареєстрований за адресою ")}${ph()}${tx(". The privacy contact is ", ". Контакт для питань конфіденційності: ")}${ph()}.</p>
+      body: `<p>${tx("The verified operator and privacy contact are shown above. Privacy requests can also be started through the Support page.", "Підтверджені дані оператора та контакт із питань конфіденційності наведені вище. Запит щодо конфіденційності також можна розпочати через сторінку підтримки.")}</p>
       <p>${tx("The Android application identifier is ", "Ідентифікатор Android-застосунку: ")}<code>com.denysharkusha.habitduel</code>. ${tx("The application is available in English and Ukrainian.", "Застосунок доступний англійською та українською мовами.")}</p>
-      <div class="callout callout-warning"><strong>${tx("Before publication", "Перед публікацією")}</strong><p>${tx("The operator name, address, contact email, launch markets and any EU representative or data-protection contact must replace every ", "Ім’я оператора, адреса, контактний email, ринки запуску та дані представника в ЄС або відповідальної особи мають замінити кожен ")}${ph()}.</p></div>`,
+      <div class="callout callout-warning"><strong>${tx("Before publication", "Перед публікацією")}</strong><p>${tx("Replace the placeholders above with the verified operator name and a monitored contact email.", "Заміни позначки вище на підтверджене ім’я оператора та email, який регулярно перевіряється.")}</p></div>`,
     },
     {
       id: "data-we-process",
@@ -301,20 +306,19 @@ const privacyPage = {
         <li>${tx("Prevent abuse, enforce Community Guidelines, review reports and protect users and the service.", "Запобігати зловживанням, забезпечувати виконання Правил спільноти, розглядати скарги та захищати користувачів і сервіс.")}</li>
         <li>${tx("Show consent-aware advertising, diagnose failures, answer support requests and comply with legal obligations.", "Показувати рекламу з урахуванням згоди, діагностувати збої, відповідати на звернення до підтримки та виконувати юридичні обов’язки.")}</li>
       </ul>
-      <p>${tx("Where EEA or UK data-protection law applies, processing may rely on performance of a contract, consent, legitimate interests or a legal obligation. The final purpose-by-purpose legal-basis assessment is ", "Якщо застосовується законодавство ЄЕЗ або Великої Британії про захист даних, обробка може ґрунтуватися на виконанні договору, згоді, законних інтересах або юридичному обов’язку. Остаточна оцінка правових підстав для кожної мети: ")}${ph()}.</p>`,
+      <p>${tx("Where applicable data-protection law requires a legal basis, processing relies on performance of the service contract, consent, legitimate interests in operating and securing the service, or a legal obligation, depending on the purpose.", "Коли законодавство про захист даних вимагає правової підстави, обробка залежно від мети ґрунтується на виконанні договору про надання сервісу, згоді, законних інтересах щодо роботи й захисту сервісу або юридичному обов’язку.")}</p>`,
     },
     {
       id: "sharing",
       title: { en: "4. Service providers and sharing", uk: "4. Постачальники послуг і передавання даних" },
       body: `<p>${tx("We do not sell personal data. We may disclose the minimum necessary data to providers acting for us, other users according to your visibility settings, professional advisers, a successor in a lawful business transaction, or authorities where required by law.", "Ми не продаємо персональні дані. Ми можемо передавати мінімально необхідні дані постачальникам, що діють від нашого імені, іншим користувачам відповідно до твоїх налаштувань видимості, професійним радникам, правонаступнику в законній бізнес-операції або органам влади, якщо цього вимагає закон.")}</p>
       <div class="policy-table-wrap"><table class="policy-table">
-        <thead><tr><th>${tx("Provider", "Постачальник")}</th><th>${tx("Purpose", "Призначення")}</th><th>${tx("Details still required", "Дані, які ще потрібно додати")}</th></tr></thead>
+        <thead><tr><th>${tx("Provider", "Постачальник")}</th><th>${tx("Purpose", "Призначення")}</th></tr></thead>
         <tbody>
-          <tr><td><strong>Supabase</strong></td><td>${tx("Authentication and PostgreSQL data storage", "Автентифікація та зберігання даних PostgreSQL")}</td><td>${tx("Project region and transfer safeguards: ", "Регіон проєкту та механізми передачі: ")}${ph()}</td></tr>
-          <tr><td><strong>${tx("Application hosting", "Хостинг застосунку")}</strong></td><td>${tx("Backend API and operational infrastructure", "Backend API та операційна інфраструктура")}</td><td>${tx("Legal provider, region and retention: ", "Юридична особа постачальника, регіон і строки: ")}${ph()}</td></tr>
-          <tr><td><strong>Google</strong></td><td>${tx("Google sign-in, Google Mobile Ads/UMP and, when enabled, Google Play Billing", "Вхід через Google, Google Mobile Ads/UMP та, після ввімкнення, Google Play Billing")}</td><td>${tx("Final ad-data regional classification: ", "Остаточна регіональна класифікація рекламних даних: ")}${ph()}</td></tr>
-          <tr><td><strong>Sentry</strong></td><td>${tx("Optional crash diagnostics with sensitive fields removed; default PII and performance tracing are disabled", "Необов’язкова діагностика збоїв із видаленими чутливими полями; стандартне передавання PII та трасування продуктивності вимкнені")}</td><td>${tx("Whether enabled in production and the retention period: ", "Увімкнення в опублікованій версії та строк зберігання: ")}${ph()}</td></tr>
-          <tr><td><strong>${tx("Email provider", "Постачальник email")}</strong></td><td>${tx("Verification, password recovery and service messages", "Підтвердження, відновлення пароля та сервісні повідомлення")}</td><td>${ph()}</td></tr>
+          <tr><td><strong>Supabase</strong></td><td>${tx("Authentication and PostgreSQL data storage", "Автентифікація та зберігання даних PostgreSQL")}</td></tr>
+          <tr><td><strong>${tx("Application hosting and email providers", "Постачальники хостингу застосунку та email")}</strong></td><td>${tx("Backend API, operational infrastructure, verification, password recovery and service messages", "Backend API, операційна інфраструктура, підтвердження, відновлення пароля та сервісні повідомлення")}</td></tr>
+          <tr><td><strong>Google</strong></td><td>${tx("Google sign-in and Google Mobile Ads/UMP", "Вхід через Google та Google Mobile Ads/UMP")}</td></tr>
+          <tr><td><strong>Sentry</strong></td><td>${tx("Optional crash diagnostics with sensitive fields removed; default PII and performance tracing are disabled", "Необов’язкова діагностика збоїв із видаленими чутливими полями; стандартне передавання PII та трасування продуктивності вимкнені")}</td></tr>
         </tbody>
       </table></div>
       <p>${tx("Provider privacy information is available from ", "Інформація постачальників про конфіденційність доступна на сайтах ")}<a href="https://supabase.com/privacy" rel="noopener noreferrer">Supabase</a>, <a href="https://policies.google.com/privacy" rel="noopener noreferrer">Google</a> ${tx("and", "та")} <a href="https://sentry.io/privacy/" rel="noopener noreferrer">Sentry</a>.</p>`,
@@ -323,15 +327,12 @@ const privacyPage = {
       id: "visibility",
       title: { en: "5. Visibility and community features", uk: "5. Видимість і функції спільноти" },
       body: `<p>${tx("Your login email is not visible to other users, but authorized administrators or support personnel may access it when needed to operate, secure or support the service. Your display name, avatar, bio, time zone, gender and level may appear on your profile. Profile fields and habits follow the public, friends-only or private visibility choices available in the product. Rooms may be public or friends-only, and their access may also be protected by a PIN.", "Email для входу не бачать інші користувачі, але уповноважені адміністратори або працівники підтримки можуть мати до нього доступ, коли це потрібно для роботи, захисту чи підтримки сервісу. Ім’я, аватар, опис, часовий пояс, стать і рівень можуть відображатися у профілі. Поля профілю та звички показуються відповідно до публічних, доступних лише друзям або приватних налаштувань видимості. Кімнати можуть бути публічними або доступними лише друзям, а доступ до них також може захищатися PIN-кодом.")}</p>
-      <p>${tx("Other users can report a user or a room and can block another user. A report may include a snapshot of the reported room name and description so moderators can review the event even if the room later changes. Moderation evidence is retained for ", "Інші користувачі можуть поскаржитися на користувача чи кімнату та заблокувати іншого користувача. Скарга може містити знімок назви й опису кімнати, щоб модератори могли розглянути подію, навіть якщо кімнату пізніше змінять. Матеріали модерації зберігаються протягом ")}${ph()}.</p>`,
+      <p>${tx("Other users can report a user or a room and can block another user. A report may include a snapshot of the reported room name and description so moderators can review the event even if the room later changes. Moderation evidence is restricted and kept only as long as reasonably needed for safety, dispute handling or legal obligations.", "Інші користувачі можуть поскаржитися на користувача чи кімнату та заблокувати іншого користувача. Скарга може містити знімок назви й опису кімнати, щоб модератори могли розглянути подію, навіть якщо кімнату пізніше змінять. Матеріали модерації мають обмежений доступ і зберігаються лише стільки, скільки обґрунтовано потрібно для безпеки, вирішення спорів або виконання юридичних обов’язків.")}</p>`,
     },
     {
-      id: "ads-purchases",
-      title: { en: "6. Advertising and purchases", uk: "6. Реклама та покупки" },
-      body: `<h3>${tx("Advertising", "Реклама")}</h3>
-      <p>${tx("Habit Duel may show Google Mobile Ads banners. The current app configuration requests non-personalized ads and uses Google’s consent tools where required. Google may still process device or advertising identifiers, IP-derived approximate location, ad interactions and diagnostics. You can review or withdraw applicable advertising consent through the controls provided in the app or by the platform.", "Habit Duel може показувати банери Google Mobile Ads. Поточна конфігурація запитує неперсоналізовану рекламу й використовує інструменти згоди Google там, де це потрібно. Google усе одно може обробляти ідентифікатори пристрою чи реклами, приблизне місцезнаходження за IP, взаємодію з рекламою та діагностику. Переглянути або відкликати відповідну згоду можна через елементи керування в застосунку чи на платформі.")}</p>
-      <h3>${tx("Purchases", "Покупки")}</h3>
-      <p>${tx("Store purchases are not yet enabled in the current release. If they are enabled later, Google Play will process the payment method. Habit Duel may process the product identifier, purchase status and time, a one-way hash of the purchase token, entitlement or virtual-item grant, and refund or revocation events. We do not receive full payment-card details.", "Покупки в магазині ще не ввімкнені в поточній версії застосунку. Якщо їх буде ввімкнено пізніше, спосіб оплати оброблятиме Google Play. Habit Duel може обробляти ідентифікатор товару, статус і час покупки, односторонній хеш токена покупки, надане право чи віртуальний предмет, а також події повернення або відкликання. Ми не отримуємо повні дані платіжної картки.")}</p>`,
+      id: "advertising",
+      title: { en: "6. Advertising", uk: "6. Реклама" },
+      body: `<p>${tx("Habit Duel may show Google Mobile Ads banners and uses Google’s consent tools where required. Google may process device or advertising identifiers, IP-derived approximate location, ad interactions and diagnostics. You can review or withdraw applicable advertising consent through the controls provided in the app or by the platform.", "Habit Duel може показувати банери Google Mobile Ads і використовує інструменти згоди Google там, де це потрібно. Google може обробляти ідентифікатори пристрою чи реклами, приблизне місцезнаходження за IP, взаємодію з рекламою та діагностику. Переглянути або відкликати відповідну згоду можна через елементи керування в застосунку чи на платформі.")}</p>`,
     },
     {
       id: "retention",
@@ -343,11 +344,7 @@ const privacyPage = {
           <tr><td>${tx("Active account, profile, habits, rooms and related records", "Активний акаунт, профіль, звички, кімнати та пов’язані записи")}</td><td>${tx("While the account is active; deletion processing as described below", "Поки акаунт активний; видалення — як описано нижче")}</td></tr>
           <tr><td>${tx("Completed or terminal timer-session operational records", "Завершені операційні записи сесій таймера")}</td><td>${tx("30 days", "30 днів")}</td></tr>
           <tr><td>${tx("Completed account-deletion tombstone", "Завершений технічний запис про видалення акаунта")}</td><td>${tx("7 days", "7 днів")}</td></tr>
-          <tr><td>${tx("Database backups", "Резервні копії бази даних")}</td><td>${ph()}</td></tr>
-          <tr><td>${tx("API and hosting logs", "Журнали API та хостингу")}</td><td>${ph()}</td></tr>
-          <tr><td>${tx("Sentry diagnostics, if enabled", "Діагностика Sentry, якщо ввімкнена")}</td><td>${ph()}</td></tr>
-          <tr><td>${tx("Moderation evidence and security records", "Матеріали модерації та записи безпеки")}</td><td>${ph()}</td></tr>
-          <tr><td>${tx("Purchase ledger required for fraud prevention, accounting or law", "Журнал покупок, потрібний для запобігання шахрайству, обліку чи за законом")}</td><td>${ph()}</td></tr>
+          <tr><td>${tx("Backups, API or hosting logs, optional diagnostics, moderation evidence and security records", "Резервні копії, журнали API чи хостингу, необов’язкова діагностика, матеріали модерації та записи безпеки")}</td><td>${tx("Only as long as reasonably needed for recovery, security, dispute handling or legal obligations, then deleted or anonymized", "Лише стільки, скільки обґрунтовано потрібно для відновлення, безпеки, вирішення спорів або юридичних обов’язків, після чого дані видаляються чи анонімізуються")}</td></tr>
           <tr><td>${tx("Advertising-provider data", "Дані постачальника реклами")}</td><td>${tx("According to Google’s current policies and your consent settings", "Відповідно до чинних правил Google і налаштувань згоди")}</td></tr>
         </tbody>
       </table></div>`,
@@ -356,26 +353,26 @@ const privacyPage = {
       id: "deletion-rights",
       title: { en: "8. Deletion, choices and rights", uk: "8. Видалення, вибір і права" },
       body: `<p>${tx("You can update many profile, visibility, reminder, language, sound and vibration choices in the application. You can delete your account in Settings or use the public ", "У застосунку можна змінити багато налаштувань профілю, видимості, нагадувань, мови, звуку й вібрації. Видалити акаунт можна в Налаштуваннях або через публічну ")}<a href="../account-deletion/">${tx("Account Deletion page", "сторінку видалення акаунта")}</a>.</p>
-      <p>${tx("Depending on your location, you may have rights to access, correct, delete or receive a copy of personal data; object to or restrict certain processing; withdraw consent without affecting earlier lawful processing; and complain to a data-protection authority. Submit a request to ", "Залежно від місця проживання ти можеш мати право на доступ, виправлення, видалення чи отримання копії персональних даних; заперечення проти певної обробки або її обмеження; відкликання згоди без впливу на попередню законну обробку; та подання скарги до органу захисту даних. Надішли запит на ")}${ph()}${tx(". Identity-verification method and response time: ", ". Спосіб підтвердження особи та строк відповіді: ")}${ph()}.</p>
+      <p>${tx("Depending on your location, you may have rights to access, correct, delete or receive a copy of personal data; object to or restrict certain processing; withdraw consent without affecting earlier lawful processing; and complain to a data-protection authority. Use the privacy contact shown above or the ", "Залежно від місця проживання ти можеш мати право на доступ, виправлення, видалення чи отримання копії персональних даних; заперечення проти певної обробки або її обмеження; відкликання згоди без впливу на попередню законну обробку; та подання скарги до органу захисту даних. Скористайся контактом із питань конфіденційності вище або ")}<a href="../support/">${tx("Support page", "сторінкою підтримки")}</a>.</p>
       <div class="callout"><strong>${tx("Account deletion", "Видалення акаунта")}</strong><p>${tx("The local application record and most linked product data are deleted after confirmation. Supabase identity deletion is attempted immediately and retried if the provider is temporarily unavailable. Backups, security evidence and legally required records may expire later according to the periods above.", "Локальний запис застосунку та більшість пов’язаних даних видаляються після підтвердження. Видалення ідентичності Supabase виконується одразу та повторюється, якщо постачальник тимчасово недоступний. Резервні копії, матеріали безпеки й обов’язкові за законом записи можуть бути видалені пізніше відповідно до наведених строків.")}</p></div>`,
     },
     {
       id: "children",
       title: { en: "9. Children", uk: "9. Діти" },
-      body: `<p>${tx("Habit Duel is not designed for children. The final minimum age for the launch markets is ", "Habit Duel не призначений для дітей. Остаточний мінімальний вік для ринків запуску: ")}${ph()}${tx(". The application does not currently perform technical age verification or collect date of birth. The final target-audience decision and any parental-consent process are ", ". Наразі застосунок технічно не перевіряє вік і не збирає дату народження. Остаточне рішення щодо цільової аудиторії та процесу батьківської згоди: ")}${ph()}.</p>
-      <p>${tx("If we learn that personal data was collected from a prohibited underage user, we will take appropriate steps to restrict the account and delete the data, subject to safety and legal preservation duties. Contact the designated child-safety address at ", "Якщо ми дізнаємося, що персональні дані зібрано від користувача, який не досяг дозволеного віку, ми вживемо належних заходів для обмеження акаунта й видалення даних з урахуванням обов’язків щодо безпеки та збереження за законом. Контакт із безпеки дітей: ")}${ph()}.</p>`,
+      body: `<p>${tx("Habit Duel is not designed for children. Users must meet the minimum age stated in the Terms of Service and any higher age required by local law. The application does not currently perform technical age verification or collect date of birth.", "Habit Duel не призначений для дітей. Користувачі мають досягти мінімального віку, зазначеного в Умовах користування, а також вищого віку, якщо цього вимагає місцеве законодавство. Наразі застосунок технічно не перевіряє вік і не збирає дату народження.")}</p>
+      <p>${tx("If we learn that personal data was collected from a prohibited underage user, we will take appropriate steps to restrict the account and delete the data, subject to safety and legal preservation duties. Contact us through the ", "Якщо ми дізнаємося, що персональні дані зібрано від користувача, який не досяг дозволеного віку, ми вживемо належних заходів для обмеження акаунта й видалення даних з урахуванням обов’язків щодо безпеки та збереження за законом. Звернися через ")}<a href="../support/">${tx("Support page", "сторінку підтримки")}</a>.</p>`,
     },
     {
       id: "security-transfers",
       title: { en: "10. Security and international transfers", uk: "10. Безпека та міжнародні передачі" },
       body: `<p>${tx("We use measures designed to protect data, including TLS in transit, access controls, secure local token storage, hashed room PIN verification, encrypted owner PIN recovery data and redaction of sensitive crash details. No method is completely secure, so we cannot guarantee absolute security.", "Ми застосовуємо заходи для захисту даних, зокрема TLS під час передавання, контроль доступу, безпечне локальне зберігання токенів, хешовану перевірку PIN-кодів кімнат, шифровані дані для відновлення PIN власником і приховування чутливих деталей у звітах про збої. Жоден метод не є абсолютно безпечним, тому ми не можемо гарантувати повну безпеку.")}</p>
-      <p>${tx("Providers may process data outside your country. The processing regions and transfer safeguards for Supabase, hosting, email, Google and Sentry are ", "Постачальники можуть обробляти дані за межами твоєї країни. Регіони обробки та механізми міжнародної передачі для Supabase, хостингу, email, Google і Sentry: ")}${ph()}.</p>`,
+      <p>${tx("Providers may process data outside your country. Where required, international transfers are protected by the provider’s applicable contractual and legal safeguards.", "Постачальники можуть обробляти дані за межами твоєї країни. Коли це потрібно, міжнародні передачі захищаються відповідними договірними та правовими гарантіями постачальника.")}</p>`,
     },
     {
       id: "changes-contact",
       title: { en: "11. Changes and contact", uk: "11. Зміни та контакти" },
       body: `<p>${tx("We may update this Policy when the product, law or providers change. Material changes will be communicated through the application, this page or another appropriate channel before they take effect where required.", "Ми можемо оновлювати цю Політику, коли змінюються продукт, законодавство або постачальники. Про суттєві зміни буде повідомлено через застосунок, цю сторінку або інший належний канал до набрання ними чинності, якщо це потрібно.")}</p>
-      <ul><li>${tx("Operator and postal address: ", "Оператор і поштова адреса: ")}${ph()}</li><li>${tx("Privacy email: ", "Email із питань конфіденційності: ")}${ph()}</li><li>${tx("Support: ", "Підтримка: ")}<a href="../support/">${tx("Support page", "сторінка підтримки")}</a></li><li>${tx("EU representative or DPO, if required: ", "Представник у ЄС або DPO, якщо потрібно: ")}${ph()}</li></ul>`,
+      <p>${tx("Use the operator and privacy contact shown at the top of this page, or visit the ", "Скористайся даними оператора й контактом із питань конфіденційності у верхній частині сторінки або відкрий ")}<a href="../support/">${tx("Support page", "сторінку підтримки")}</a>.</p>`,
     },
   ],
 };
@@ -400,9 +397,10 @@ const deletionPage = {
     uk: "Як видалити акаунт Habit Duel, які дані видаляються, що може зберігатися та як подати запит через вебсторінку.",
   },
   meta: [
+    { label: { en: "Effective date", uk: "Дата набрання чинності" }, value: tx("August 31, 2026", "31 серпня 2026") },
     { label: { en: "Application", uk: "Застосунок" }, value: "Habit Duel" },
-    { label: { en: "Operator", uk: "Оператор" }, value: ph() },
-    { label: { en: "Deletion contact", uk: "Контакт для видалення" }, value: ph() },
+    { label: { en: "Operator", uk: "Оператор" }, value: publication.operator },
+    { label: { en: "Deletion contact", uk: "Контакт для видалення" }, value: publication.contact },
   ],
   intro: {
     en: "You can permanently delete your Habit Duel account and associated product data. Deletion cannot currently be cancelled after the three-second confirmation is completed.",
@@ -419,8 +417,8 @@ const deletionPage = {
       id: "web-request",
       title: { en: "2. Request deletion without the app", uk: "2. Запит без застосунку" },
       body: `<p>${tx("If you cannot access the app, use the secure request method below. The request must identify the Habit Duel account while avoiding passwords, one-time codes and identity documents in ordinary email.", "Якщо немає доступу до застосунку, скористайся безпечним способом нижче. Запит має ідентифікувати акаунт Habit Duel, але не надсилай пароль, одноразові коди чи документи звичайною електронною поштою.")}</p>
-      <div class="support-grid"><div class="support-card"><small>${tx("Secure request form", "Безпечна форма запиту")}</small><strong>${ph()}</strong></div><div class="support-card"><small>${tx("Deletion email", "Email для видалення")}</small><strong>${ph()}</strong></div><div class="support-card"><small>${tx("Expected response", "Очікуваний строк відповіді")}</small><strong>${ph()}</strong></div></div>
-      <p>${tx("Identity verification method: ", "Спосіб підтвердження особи: ")}${ph()}${tx(". A working form or monitored email must replace these placeholders before this URL is submitted to Google Play.", ". Робоча форма або email, який регулярно перевіряється, мають замінити ці позначки до подання URL у Google Play.")}</p>`,
+      <div class="support-grid"><div class="support-card"><small>${tx("Deletion email or secure form", "Email або безпечна форма для видалення")}</small><strong>${tx("Use the deletion contact shown above", "Скористайся контактом для видалення вище")}</strong></div></div>
+      <p>${tx("A working form or monitored email must replace the contact placeholder before this URL is submitted to Google Play. We may ask you to confirm control of the account email, but we will never ask for your password or one-time code.", "Робоча форма або email, який регулярно перевіряється, мають замінити позначку контакту до подання URL у Google Play. Ми можемо попросити підтвердити контроль над email акаунта, але ніколи не проситимемо пароль або одноразовий код.")}</p>`,
     },
     {
       id: "deleted-data",
@@ -434,30 +432,22 @@ const deletionPage = {
       title: { en: "4. Data that may remain", uk: "4. Дані, які можуть залишитися" },
       body: `<div class="policy-table-wrap"><table class="policy-table"><thead><tr><th>${tx("Record", "Запис")}</th><th>${tx("Reason", "Причина")}</th><th>${tx("Retention", "Строк")}</th></tr></thead><tbody>
         <tr><td>${tx("Completed deletion tombstone", "Завершений технічний запис видалення")}</td><td>${tx("Prevent conflicting retries and confirm completion", "Запобігання конфліктним повторам і підтвердження завершення")}</td><td>${tx("7 days", "7 днів")}</td></tr>
-        <tr><td>${tx("Database backups", "Резервні копії бази даних")}</td><td>${tx("Disaster recovery", "Відновлення після збою")}</td><td>${ph()}</td></tr>
-        <tr><td>${tx("Purchase-token hash or legally required purchase record", "Хеш токена покупки або обов’язковий за законом запис")}</td><td>${tx("Prevent duplicate grants, fraud, accounting or legal compliance", "Запобігання повторним нарахуванням, шахрайству, облік або виконання закону")}</td><td>${ph()}</td></tr>
-        <tr><td>${tx("Moderation or security evidence", "Матеріали модерації чи безпеки")}</td><td>${tx("Safety, abuse prevention, dispute handling or legal duties", "Безпека, запобігання зловживанням, спори або юридичні обов’язки")}</td><td>${ph()}</td></tr>
-        <tr><td>${tx("Provider, API and diagnostic logs", "Журнали постачальників, API й діагностики")}</td><td>${tx("Security and service reliability", "Безпека та надійність сервісу")}</td><td>${ph()}</td></tr>
+        <tr><td>${tx("Backups, provider/API logs and diagnostics", "Резервні копії, журнали постачальників/API та діагностика")}</td><td>${tx("Disaster recovery, security and service reliability", "Відновлення після збою, безпека та надійність сервісу")}</td><td>${tx("Only as long as reasonably needed for those purposes, then deleted or anonymized", "Лише стільки, скільки обґрунтовано потрібно для цих цілей, після чого дані видаляються чи анонімізуються")}</td></tr>
+        <tr><td>${tx("Moderation or security evidence", "Матеріали модерації чи безпеки")}</td><td>${tx("Safety, abuse prevention, dispute handling or legal duties", "Безпека, запобігання зловживанням, спори або юридичні обов’язки")}</td><td>${tx("Only as long as reasonably needed for the applicable purpose", "Лише стільки, скільки обґрунтовано потрібно для відповідної мети")}</td></tr>
       </tbody></table></div>
       <p>${tx("Retained records are restricted to their preservation purpose and are not used to recreate an active Habit Duel profile. Exact operational retention periods must be finalized before publication.", "Збережені записи обмежуються метою збереження й не використовуються для відновлення активного профілю Habit Duel. Точні фактичні строки зберігання потрібно визначити до публікації.")}</p>`,
     },
     {
       id: "timing",
       title: { en: "5. Timing and confirmation", uk: "5. Строки та підтвердження" },
-      body: `<p>${tx("The primary application record is removed after the confirmed request is accepted. Maximum time to complete identity-provider cleanup, remove data from live systems and expire backups: ", "Основний запис застосунку видаляється після прийняття підтвердженого запиту. Максимальний строк завершення очищення в провайдера ідентичності, видалення з активних систем і завершення строку резервних копій: ")}${ph()}.</p>
-      <p>${tx("Method used to notify you that a web request is complete: ", "Спосіб повідомлення про завершення вебзапиту: ")}${ph()}.</p>`,
-    },
-    {
-      id: "purchases",
-      title: { en: "6. Purchases", uk: "6. Покупки" },
-      body: `<p>${tx("Google Play purchases are not yet enabled in the current release. If purchases are enabled later, deleting the Habit Duel account will not itself create a refund. One-time entitlements or virtual items tied only to the deleted account may no longer be recoverable. Refund eligibility is determined by applicable law and Google Play policies.", "Покупки Google Play ще не ввімкнені в поточній версії застосунку. Якщо їх буде ввімкнено пізніше, видалення акаунта Habit Duel саме по собі не створює повернення коштів. Одноразові права або віртуальні предмети, прив’язані лише до видаленого акаунта, можуть більше не відновлюватися. Право на повернення визначається законом і правилами Google Play.")}</p>
-      <p>${tx("If a recurring subscription is introduced in the future, it must be cancelled separately in Google Play unless the product explicitly confirms otherwise.", "Якщо в майбутньому з’явиться регулярна підписка, її потрібно буде окремо скасувати в Google Play, якщо продукт прямо не повідомить інше.")}</p>`,
+      body: `<p>${tx("The primary application record is removed after the confirmed request is accepted. Supabase identity deletion is attempted immediately and retried if the provider is temporarily unavailable. Restricted backup, security or legal records expire later as described above.", "Основний запис застосунку видаляється після прийняття підтвердженого запиту. Видалення ідентичності Supabase виконується одразу та повторюється, якщо постачальник тимчасово недоступний. Обмежені резервні, безпекові чи юридичні записи припиняють зберігатися пізніше, як описано вище.")}</p>
+      <p>${tx("For an external request, we respond through the same verified channel used to receive or confirm the request.", "Для зовнішнього запиту ми відповідаємо через той самий перевірений канал, який використовувався для отримання або підтвердження запиту.")}</p>`,
     },
     {
       id: "help",
-      title: { en: "7. Need help?", uk: "7. Потрібна допомога?" },
-      body: `<p>${tx("Contact the deletion team at ", "Звернися до команди видалення за адресою ")}${ph()}${tx(" or visit the ", " або відкрий ")}<a href="../support/">${tx("Support page", "сторінку підтримки")}</a>. ${tx("Operator and postal address: ", "Оператор і поштова адреса: ")}${ph()}.</p>
-      <div class="callout callout-warning"><strong>${tx("Do not send secrets", "Не надсилай секретні дані")}</strong><p>${tx("Support will never ask you to send a password, one-time code or full payment-card number by ordinary email.", "Підтримка ніколи не проситиме надіслати пароль, одноразовий код або повний номер платіжної картки звичайною електронною поштою.")}</p></div>`,
+      title: { en: "6. Need help?", uk: "6. Потрібна допомога?" },
+      body: `<p>${tx("Use the deletion contact shown above or visit the ", "Скористайся контактом для видалення вище або відкрий ")}<a href="../support/">${tx("Support page", "сторінку підтримки")}</a>.</p>
+      <div class="callout callout-warning"><strong>${tx("Do not send secrets", "Не надсилай секретні дані")}</strong><p>${tx("Support will never ask you to send a password or one-time code by ordinary email.", "Підтримка ніколи не проситиме надіслати пароль або одноразовий код звичайною електронною поштою.")}</p></div>`,
     },
   ],
 };
@@ -470,8 +460,8 @@ const supportPage = {
   label: { en: "Support", uk: "Підтримка" },
   heading: { en: "How can we help?", uk: "Як ми можемо допомогти?" },
   lead: {
-    en: "Find the right contact and quick answers for accounts, reminders, rooms, safety and future purchases.",
-    uk: "Знайди потрібний контакт і короткі відповіді про акаунти, нагадування, кімнати, безпеку та майбутні покупки.",
+    en: "Find the right contact and quick answers for accounts, reminders, rooms and safety.",
+    uk: "Знайди потрібний контакт і короткі відповіді про акаунти, нагадування, кімнати та безпеку.",
   },
   title: { en: "Support — Habit Duel", uk: "Підтримка — Habit Duel" },
   description: {
@@ -479,9 +469,7 @@ const supportPage = {
     uk: "Центр допомоги Habit Duel щодо доступу до акаунта, сповіщень, кімнат, скарг, конфіденційності та видалення.",
   },
   meta: [
-    { label: { en: "Support email", uk: "Email підтримки" }, value: ph() },
-    { label: { en: "Response target", uk: "Орієнтовний строк" }, value: ph() },
-    { label: { en: "Service status", uk: "Стан сервісу" }, value: ph() },
+    { label: { en: "Support email", uk: "Email підтримки" }, value: publication.contact },
   ],
   intro: {
     en: "Choose the contact that matches your request. Before launch, every placeholder below must be replaced by a monitored address or working form.",
@@ -491,8 +479,7 @@ const supportPage = {
     {
       id: "contacts",
       title: { en: "1. Contact us", uk: "1. Зв’язатися з нами" },
-      body: `<div class="support-grid"><div class="support-card"><small>${tx("General support", "Загальна підтримка")}</small><strong>${ph()}</strong></div><div class="support-card"><small>${tx("Privacy and deletion", "Конфіденційність і видалення")}</small><strong>${ph()}</strong></div><div class="support-card"><small>${tx("Safety and reports", "Безпека та скарги")}</small><strong>${ph()}</strong></div></div>
-      <p>${tx("Operator: ", "Оператор: ")}${ph()} · ${tx("Postal address: ", "Поштова адреса: ")}${ph()}.</p>
+      body: `<div class="support-grid"><div class="support-card"><small>${tx("Support, privacy, deletion and safety", "Підтримка, конфіденційність, видалення та безпека")}</small><strong>${tx("Use the monitored support contact shown above", "Скористайся контактом підтримки вище")}</strong></div></div>
       <p>${tx("Include the email used for Habit Duel, app version, device model, Android version and a short description of what happened. Screenshots are useful if they do not expose another person’s private information.", "Укажи email, який використовується в Habit Duel, версію застосунку, модель пристрою, версію Android і короткий опис події. Знімки екрана корисні, якщо вони не розкривають приватні дані іншої людини.")}</p>`,
     },
     {
@@ -512,14 +499,12 @@ const supportPage = {
     {
       id: "rooms-safety",
       title: { en: "4. Rooms, people and safety", uk: "4. Кімнати, люди та безпека" },
-      body: `<div class="faq-list"><details><summary>${tx("How do I report a user or room?", "Як поскаржитися на користувача чи кімнату?")}</summary><p>${tx("Open the user or room actions, choose Report, select the reason and add only the details needed for review. You can also block the user. For urgent child-safety concerns, use the dedicated contact below.", "Відкрий дії користувача або кімнати, вибери «Поскаржитися», укажи причину й додай лише потрібні для розгляду деталі. Також можна заблокувати користувача. Для термінових питань безпеки дітей скористайся окремим контактом нижче.")}</p></details><details><summary>${tx("I lost a room PIN", "Я втратив PIN-код кімнати")}</summary><p>${tx("A room owner can use the recovery flow available in the room settings. Never publish a room PIN in a report or public profile.", "Власник кімнати може скористатися відновленням у налаштуваннях кімнати. Не публікуй PIN-код кімнати у скарзі чи публічному профілі.")}</p></details></div>
-      <p>${tx("Safety email: ", "Email із питань безпеки: ")}${ph()} · ${tx("Child-safety contact: ", "Контакт із безпеки дітей: ")}${ph()}.</p>`,
+      body: `<div class="faq-list"><details><summary>${tx("How do I report a user or room?", "Як поскаржитися на користувача чи кімнату?")}</summary><p>${tx("Open the user or room actions, choose Report, select the reason and add only the details needed for review. You can also block the user. For an urgent safety concern, use the support contact above.", "Відкрий дії користувача або кімнати, вибери «Поскаржитися», укажи причину й додай лише потрібні для розгляду деталі. Також можна заблокувати користувача. Для термінового питання безпеки скористайся контактом підтримки вище.")}</p></details><details><summary>${tx("I lost a room PIN", "Я втратив PIN-код кімнати")}</summary><p>${tx("A room owner can use the recovery flow available in the room settings. Never publish a room PIN in a report or public profile.", "Власник кімнати може скористатися відновленням у налаштуваннях кімнати. Не публікуй PIN-код кімнати у скарзі чи публічному профілі.")}</p></details></div>`,
     },
     {
-      id: "deletion-purchases",
-      title: { en: "5. Deletion and purchases", uk: "5. Видалення та покупки" },
-      body: `<div class="faq-list"><details><summary>${tx("How do I delete my account?", "Як видалити акаунт?")}</summary><p>${tx("Open Settings, choose Delete account and hold the confirmation for three seconds, or follow the public ", "Відкрий Налаштування, вибери «Видалити акаунт» і утримуй підтвердження три секунди або скористайся публічною ")}<a href="../account-deletion/">${tx("Account Deletion page", "сторінкою видалення акаунта")}</a>.</p></details><details><summary>${tx("How do I restore Premium?", "Як відновити Premium?")}</summary><p>${tx("Google Play purchasing is not yet enabled in the current release. When it becomes available, this answer will explain restoration, account matching, pending payments, refunds and revoked purchases.", "Покупки Google Play ще не ввімкнені в поточній версії застосунку. Коли вони стануть доступні, тут буде описано відновлення, прив’язку акаунта, платежі в очікуванні, повернення та відкликані покупки.")}</p></details></div>
-      <div class="callout callout-warning"><strong>${tx("Never send payment secrets", "Не надсилай платіжні секрети")}</strong><p>${tx("Support may ask for a Google Play order number, but never for a full card number, password or one-time code.", "Підтримка може попросити номер замовлення Google Play, але ніколи — повний номер картки, пароль чи одноразовий код.")}</p></div>`,
+      id: "deletion",
+      title: { en: "5. Account deletion", uk: "5. Видалення акаунта" },
+      body: `<div class="faq-list"><details><summary>${tx("How do I delete my account?", "Як видалити акаунт?")}</summary><p>${tx("Open Settings, choose Delete account and hold the confirmation for three seconds, or follow the public ", "Відкрий Налаштування, вибери «Видалити акаунт» і утримуй підтвердження три секунди або скористайся публічною ")}<a href="../account-deletion/">${tx("Account Deletion page", "сторінкою видалення акаунта")}</a>.</p></details></div>`,
     },
   ],
 };
@@ -532,18 +517,17 @@ const termsPage = {
   label: { en: "Terms of Service", uk: "Умови користування" },
   heading: { en: "Terms of Service", uk: "Умови користування" },
   lead: {
-    en: "The rules for using Habit Duel, accounts, community features, advertising and future purchases.",
-    uk: "Правила використання Habit Duel, акаунтів, функцій спільноти, реклами та майбутніх покупок.",
+    en: "The rules for using Habit Duel, accounts, community features and advertising.",
+    uk: "Правила використання Habit Duel, акаунтів, функцій спільноти та реклами.",
   },
   title: { en: "Terms of Service — Habit Duel", uk: "Умови користування — Habit Duel" },
   description: {
-    en: "Habit Duel Terms of Service for accounts, habits, rooms, user content, advertising, purchases and account termination.",
-    uk: "Умови користування Habit Duel щодо акаунтів, звичок, кімнат, контенту користувачів, реклами, покупок і припинення доступу.",
+    en: "Habit Duel Terms of Service for accounts, habits, rooms, user content, advertising and account termination.",
+    uk: "Умови користування Habit Duel щодо акаунтів, звичок, кімнат, контенту користувачів, реклами й припинення доступу.",
   },
   meta: [
-    { label: { en: "Effective date", uk: "Дата набрання чинності" }, value: ph() },
-    { label: { en: "Operator", uk: "Оператор" }, value: ph() },
-    { label: { en: "Governing law", uk: "Застосовне право" }, value: ph() },
+    { label: { en: "Effective date", uk: "Дата набрання чинності" }, value: tx("July 26, 2026", "26 липня 2026") },
+    { label: { en: "Operator", uk: "Оператор" }, value: publication.operator },
   ],
   intro: {
     en: "These Terms form an agreement between you and the Habit Duel operator. By creating an account or using the service, you agree to these Terms, the Privacy Policy and the Community Guidelines.",
@@ -553,13 +537,13 @@ const termsPage = {
     {
       id: "operator-acceptance",
       title: { en: "1. Operator and acceptance", uk: "1. Оператор і прийняття умов" },
-      body: `<p>${tx("Habit Duel is provided by ", "Habit Duel надає ")}${ph()}${tx(", with a registered address at ", ", зареєстрований за адресою ")}${ph()}${tx(". Support contact: ", ". Контакт підтримки: ")}${ph()}.</p>
+      body: `<p>${tx("The verified operator is shown above. Support is available through the ", "Підтверджені дані оператора наведені вище. Підтримка доступна через ")}<a href="../support/">${tx("Support page", "сторінку підтримки")}</a>.</p>
       <p>${tx("If you do not agree, do not create an account or use the service. We may ask you to accept a new version before continuing to publish or access social content.", "Якщо ти не погоджуєшся, не створюй акаунт і не користуйся сервісом. Ми можемо попросити прийняти нову версію перед подальшою публікацією або доступом до соціального контенту.")}</p>`,
     },
     {
       id: "eligibility",
       title: { en: "2. Eligibility and accounts", uk: "2. Вік і акаунти" },
-      body: `<p>${tx("The final minimum age for the launch markets is ", "Остаточний мінімальний вік для ринків запуску: ")}${ph()}${tx(". Target-audience decision and any parental-consent process: ", ". Рішення щодо цільової аудиторії та процес батьківської згоди: ")}${ph()}.</p>
+      body: `<p>${tx("The minimum age for using Habit Duel is ", "Мінімальний вік для використання Habit Duel: ")}${publication.minimumAge}${tx(". Do not create an account if local law does not permit you to agree to these Terms.", ". Не створюй акаунт, якщо місцеве законодавство не дозволяє тобі погодитися з цими Умовами.")}</p>
       <ul><li>${tx("Provide accurate information and keep it current.", "Надавай точну інформацію та оновлюй її.")}</li><li>${tx("Protect account credentials and verification codes; notify support of suspected misuse.", "Захищай облікові дані та коди підтвердження; повідомляй підтримку про підозріле використання.")}</li><li>${tx("Do not impersonate another person, create accounts to evade enforcement or transfer an account without permission.", "Не видавай себе за іншу особу, не створюй акаунти для обходу санкцій і не передавай акаунт без дозволу.")}</li><li>${tx("You are responsible for activity under your account to the extent allowed by law.", "Ти відповідаєш за активність у своєму акаунті в межах, дозволених законом.")}</li></ul>`,
     },
     {
@@ -573,7 +557,7 @@ const termsPage = {
       id: "virtual-features",
       title: { en: "4. Progress and virtual features", uk: "4. Прогрес і віртуальні функції" },
       body: `<p>${tx("Streaks, levels, points, achievements, characters, freezes, bonuses and virtual coins are product features intended for motivation. They are not money, wages, property, investments or guaranteed rewards; they have no cash value and may not be sold or transferred unless Habit Duel explicitly provides a lawful feature for doing so.", "Серії, рівні, очки, досягнення, персонажі, заморожування, бонуси та віртуальні монети — функції продукту для мотивації. Вони не є грошима, оплатою праці, майном, інвестицією чи гарантованою винагородою, не мають грошової вартості й не можуть продаватися або передаватися, якщо Habit Duel прямо не надасть законну функцію для цього.")}</p>
-      <p>${tx("We may correct balances or progress affected by a bug, duplicate grant, refund, manipulation or abuse, while respecting mandatory consumer rights.", "Ми можемо виправляти баланс або прогрес, на який вплинули помилка, повторне нарахування, повернення коштів, маніпуляція чи зловживання, з дотриманням обов’язкових прав споживача.")}</p>`,
+      <p>${tx("We may correct balances or progress affected by a bug, duplicate grant, manipulation or abuse.", "Ми можемо виправляти баланс або прогрес, на який вплинули помилка, повторне нарахування, маніпуляція чи зловживання.")}</p>`,
     },
     {
       id: "user-content",
@@ -594,36 +578,34 @@ const termsPage = {
       </ul>`,
     },
     {
-      id: "ads-purchases-terms",
-      title: { en: "7. Advertising and purchases", uk: "7. Реклама та покупки" },
-      body: `<h3>${tx("Advertising", "Реклама")}</h3><p>${tx("The service may show consent-aware advertising. Ads are provided by third parties and may be governed by their terms and privacy policies. We do not endorse an advertised product merely by displaying an ad.", "Сервіс може показувати рекламу з урахуванням згоди. Її надають треті сторони, і на неї можуть поширюватися їхні умови та політики конфіденційності. Показ реклами не означає, що ми рекомендуємо рекламований продукт.")}</p>
-      <h3>${tx("Future Google Play purchases", "Майбутні покупки Google Play")}</h3><p>${tx("Purchases are not yet enabled in the current release and are not offered through this website. If enabled, digital Premium and virtual items will be sold through Google Play Billing where required. Google displays the final price, currency and payment terms. Planned identifiers include a one-time lifetime Premium item and consumable virtual-coin packs; no subscription is currently promised.", "Покупки ще не ввімкнені в поточній версії застосунку й не продаються через цей сайт. Після ввімкнення цифровий Premium і віртуальні предмети продаватимуться через Google Play Billing там, де це потрібно. Google показуватиме остаточну ціну, валюту й умови оплати. Заплановано одноразовий довічний Premium і витратні набори віртуальних монет; підписку наразі не обіцяємо.")}</p>
-      <p>${tx("Pending, cancelled, refunded or revoked transactions may delay, prevent or reverse access or virtual grants. Restoration and support instructions will be published before purchases go live. Nothing in these Terms limits mandatory refund, withdrawal or consumer rights.", "Платежі в очікуванні, скасовані, повернені або відкликані транзакції можуть затримати, не надати або скасувати доступ чи віртуальні нарахування. Інструкції з відновлення та підтримки буде опубліковано до запуску покупок. Ці Умови не обмежують обов’язкові права на повернення, відмову чи інші права споживача.")}</p>`,
+      id: "advertising-terms",
+      title: { en: "7. Advertising", uk: "7. Реклама" },
+      body: `<p>${tx("The service may show consent-aware advertising. Ads are provided by third parties and may be governed by their terms and privacy policies. We do not endorse an advertised product merely by displaying an ad.", "Сервіс може показувати рекламу з урахуванням згоди. Її надають треті сторони, і на неї можуть поширюватися їхні умови та політики конфіденційності. Показ реклами не означає, що ми рекомендуємо рекламований продукт.")}</p>`,
     },
     {
       id: "enforcement",
       title: { en: "8. Suspension, termination and deletion", uk: "8. Призупинення, припинення й видалення" },
-      body: `<p>${tx("We may reject content, remove access to a room, limit features, suspend or terminate an account when reasonably necessary to address a violation, safety risk, fraud, legal request or threat to the service. Urgent risks may require action before notice. Notice and appeal route: ", "Ми можемо відхилити контент, закрити доступ до кімнати, обмежити функції, призупинити або припинити акаунт, якщо це обґрунтовано потрібно через порушення, ризик для безпеки, шахрайство, юридичний запит чи загрозу сервісу. Невідкладні ризики можуть вимагати дій до повідомлення. Спосіб повідомлення й оскарження: ")}${ph()}.</p>
+      body: `<p>${tx("We may reject content, remove access to a room, limit features, suspend or terminate an account when reasonably necessary to address a violation, safety risk, fraud, legal request or threat to the service. Urgent risks may require action before notice. You may appeal through the ", "Ми можемо відхилити контент, закрити доступ до кімнати, обмежити функції, призупинити або припинити акаунт, якщо це обґрунтовано потрібно через порушення, ризик для безпеки, шахрайство, юридичний запит чи загрозу сервісу. Невідкладні ризики можуть вимагати дій до повідомлення. Оскарження можна подати через ")}<a href="../support/">${tx("Support page", "сторінку підтримки")}</a>.</p>
       <p>${tx("You may stop using the service or delete your account at any time through the ", "Ти можеш припинити користування сервісом або видалити акаунт у будь-який момент через ")}<a href="../account-deletion/">${tx("Account Deletion process", "процес видалення акаунта")}</a>. ${tx("Sections that by their nature should survive — including intellectual property, preserved safety records, disclaimers and dispute terms — remain in effect where lawful.", "Розділи, які за своєю природою мають діяти далі, зокрема про інтелектуальну власність, збережені матеріали безпеки, застереження та вирішення спорів, залишаються чинними, якщо це законно.")}</p>`,
     },
     {
       id: "intellectual-property",
       title: { en: "9. Intellectual property", uk: "9. Інтелектуальна власність" },
       body: `<p>${tx("Habit Duel, its software, visual design, brand assets, characters and non-user content are owned by the operator or its licensors and protected by applicable law. These Terms grant only a limited, personal, revocable, non-exclusive and non-transferable right to use the service as intended.", "Habit Duel, його програмне забезпечення, дизайн, бренд-матеріали, персонажі та контент, що не належить користувачам, належать оператору чи ліцензіарам і захищені законом. Ці Умови надають лише обмежене, особисте, відкличне, невиключне й непередаване право користуватися сервісом за призначенням.")}</p>
-      <p>${tx("Copyright or trademark notices and contact process: ", "Повідомлення про авторське право чи торговельні марки та порядок звернення: ")}${ph()}.</p>`,
+      <p>${tx("Send copyright or trademark notices through the Support page.", "Надсилай повідомлення про авторське право чи торговельні марки через сторінку підтримки.")}</p>`,
     },
     {
       id: "disclaimers",
       title: { en: "10. Availability, warranty and liability", uk: "10. Доступність, гарантії та відповідальність" },
       body: `<p>${tx("To the maximum extent permitted by applicable law, the service is provided on an “as is” and “as available” basis. We do not promise uninterrupted operation, permanent availability of a feature, a particular personal result or error-free synchronization. Mandatory statutory guarantees remain unaffected.", "У максимальному обсязі, дозволеному законом, сервіс надається «як є» та «за наявності». Ми не обіцяємо безперервну роботу, постійну доступність функції, конкретний особистий результат або синхронізацію без помилок. Обов’язкові законні гарантії не обмежуються.")}</p>
-      <p>${tx("Final warranty exclusions, liability cap, excluded damages and indemnity language appropriate for the launch markets: ", "Остаточні виключення гарантій, межі відповідальності, виключені збитки та умови відшкодування для ринків запуску: ")}${ph()}.</p>`,
+      <p>${tx("Nothing in these Terms excludes or limits rights or liability that cannot lawfully be excluded or limited.", "Ніщо в цих Умовах не виключає й не обмежує права або відповідальність, які за законом не можна виключити чи обмежити.")}</p>`,
     },
     {
       id: "law-changes-contact",
       title: { en: "11. Law, changes and contact", uk: "11. Право, зміни та контакти" },
-      body: `<p>${tx("Governing law: ", "Застосовне право: ")}${ph()}${tx(". Courts or dispute process: ", ". Суд або порядок вирішення спорів: ")}${ph()}${tx(". Nothing here removes mandatory consumer rights or the right to use a competent local forum where the law provides it.", ". Ніщо тут не скасовує обов’язкові права споживача або право звернутися до компетентного місцевого органу, якщо це передбачено законом.")}</p>
+      body: `<p>${tx("These Terms are governed by the law applicable to the operator and user, including mandatory consumer protections. Nothing here removes mandatory consumer rights or the right to use a competent local forum where the law provides it.", "Ці Умови регулюються законодавством, застосовним до оператора й користувача, включно з обов’язковим захистом споживачів. Ніщо тут не скасовує обов’язкові права споживача або право звернутися до компетентного місцевого органу, якщо це передбачено законом.")}</p>
       <p>${tx("We may update these Terms. Material changes will be communicated in an appropriate way, and renewed acceptance may be required before continued use of social features.", "Ми можемо оновлювати ці Умови. Про суттєві зміни буде повідомлено належним способом, а для подальшого використання соціальних функцій може знадобитися повторне прийняття.")}</p>
-      <ul><li>${tx("Operator and address: ", "Оператор і адреса: ")}${ph()}</li><li>${tx("Support: ", "Підтримка: ")}${ph()}</li><li>${tx("Legal notices: ", "Юридичні повідомлення: ")}${ph()}</li><li>${tx("EU trader status or representative, if applicable: ", "Статус продавця в ЄС або представник, якщо застосовно: ")}${ph()}</li></ul>`,
+      <p>${tx("The operator is identified at the top of this page. Send support and legal notices through the ", "Оператора вказано у верхній частині цієї сторінки. Надсилай звернення до підтримки та юридичні повідомлення через ")}<a href="../support/">${tx("Support page", "сторінку підтримки")}</a>.</p>`,
     },
   ],
 };
@@ -648,9 +630,8 @@ const communityPage = {
     uk: "Правила Habit Duel щодо контенту користувачів, безпеки, скарг, блокування, модерації та оскарження.",
   },
   meta: [
-    { label: { en: "Effective date", uk: "Дата набрання чинності" }, value: ph() },
-    { label: { en: "Safety contact", uk: "Контакт із безпеки" }, value: ph() },
-    { label: { en: "Appeal contact", uk: "Контакт для оскарження" }, value: ph() },
+    { label: { en: "Effective date", uk: "Дата набрання чинності" }, value: tx("July 26, 2026", "26 липня 2026") },
+    { label: { en: "Safety contact", uk: "Контакт із безпеки" }, value: publication.contact },
   ],
   intro: {
     en: "Habit Duel should be useful, respectful and safe. These Guidelines apply to names, avatars, profile text, visible habit content, room names and descriptions, invitations, reports and other content shared with at least one other person.",
@@ -661,7 +642,7 @@ const communityPage = {
       id: "principles",
       title: { en: "1. Our principles", uk: "1. Наші принципи" },
       body: `<ul><li>${tx("Respect people and their privacy.", "Поважай людей і їхню приватність.")}</li><li>${tx("Share only content you have the right to use.", "Поширюй лише контент, на який маєш право.")}</li><li>${tx("Use rooms and social tools for genuine habit support, not manipulation or harm.", "Використовуй кімнати й соціальні інструменти для справжньої підтримки звичок, а не для маніпуляцій чи шкоди.")}</li><li>${tx("Do not exploit safety, reporting, virtual rewards or visibility controls.", "Не зловживай інструментами безпеки, скарг, віртуальними нагородами чи налаштуваннями видимості.")}</li></ul>
-      <p>${tx("Read these Guidelines together with the ", "Ці Правила слід читати разом з ")}<a href="../terms/">${tx("Terms of Service", "Умовами користування")}</a> ${tx("and the", "та")} <a href="../child-safety/">${tx("Child Safety Standards", "Стандартами безпеки дітей")}</a>.</p>`,
+      <p>${tx("Read these Guidelines together with the ", "Ці Правила слід читати разом з ")}<a href="../terms/">${tx("Terms of Service", "Умовами користування")}</a>.</p>`,
     },
     {
       id: "not-allowed",
@@ -683,109 +664,32 @@ const communityPage = {
       id: "moderation",
       title: { en: "4. Review and enforcement", uk: "4. Розгляд і заходи" },
       body: `<p>${tx("Authorized moderators can review reported user or room information, the report reason and description, and a limited snapshot of relevant room details. Depending on context, actions may include content rejection or removal, warnings, room or invitation restrictions, temporary suspension, permanent account suspension, preservation of evidence and legally required reporting.", "Уповноважені модератори можуть переглядати дані користувача чи кімнати, на які поскаржилися, причину та опис скарги й обмежений знімок відповідних даних кімнати. Залежно від обставин заходи можуть включати відхилення або видалення контенту, попередження, обмеження кімнати чи запрошень, тимчасове або постійне призупинення акаунта, збереження доказів і обов’язкове повідомлення компетентним органам.")}</p>
-      <p>${tx("We consider severity, context, repetition, intent, risk and prior enforcement. Urgent safety risk may lead to immediate restriction before notice. Formal moderator staffing, training, response target and escalation process: ", "Ми враховуємо серйозність, контекст, повторюваність, намір, ризик і попередні заходи. Невідкладна загроза безпеці може спричинити негайне обмеження до повідомлення. Формальні вимоги до команди модерації, навчання, строку реагування й ескалації: ")}${ph()}.</p>`,
+      <p>${tx("We consider severity, context, repetition, intent, risk and prior enforcement. An urgent safety risk may lead to immediate restriction before notice.", "Ми враховуємо серйозність, контекст, повторюваність, намір, ризик і попередні заходи. Невідкладна загроза безпеці може спричинити негайне обмеження до повідомлення.")}</p>`,
     },
     {
       id: "appeals",
       title: { en: "5. Appeals and mistakes", uk: "5. Оскарження й помилки" },
-      body: `<p>${tx("If you believe an enforcement decision was wrong, submit an appeal to ", "Якщо вважаєш рішення помилковим, подай оскарження на ")}${ph()}${tx(" within ", " протягом ")}${ph()}${tx(". Include the account email, relevant room or report details and why you believe the decision should change. Do not resend prohibited content through ordinary email.", ". Укажи email акаунта, відповідні дані кімнати чи скарги та поясни, чому рішення слід змінити. Не пересилай заборонений контент звичайною електронною поштою.")}</p>
-      <p>${tx("Appeal reviewer, target response and final decision process: ", "Хто розглядає оскарження, строк відповіді та порядок остаточного рішення: ")}${ph()}.</p>`,
+      body: `<p>${tx("If you believe an enforcement decision was wrong, submit an appeal through the ", "Якщо вважаєш рішення помилковим, подай оскарження через ")}<a href="../support/">${tx("Support page", "сторінку підтримки")}</a>. ${tx("Include the account email, relevant room or report details and why you believe the decision should change. Do not resend prohibited content through ordinary email.", "Укажи email акаунта, відповідні дані кімнати чи скарги та поясни, чому рішення слід змінити. Не пересилай заборонений контент звичайною електронною поштою.")}</p>`,
     },
     {
       id: "child-safety-community",
       title: { en: "6. Child safety", uk: "6. Безпека дітей" },
-      body: `<p>${tx("Habit Duel has zero tolerance for child sexual abuse and exploitation. Do not upload, share, request, store, describe in a sexualized way or link to such material. Do not use profiles, habits, rooms or invitations to groom, exploit, coerce or contact a minor for sexual purposes.", "Habit Duel має нульову толерантність до сексуального насильства та експлуатації дітей. Заборонено завантажувати, поширювати, запитувати, зберігати, сексуалізовано описувати такі матеріали чи посилатися на них. Не використовуй профілі, звички, кімнати чи запрошення для грумінгу, експлуатації, примусу або сексуального контакту з неповнолітніми.")}</p>
-      <p>${tx("Read the full ", "Ознайомся з повними ")}<a href="../child-safety/">${tx("Child Safety Standards", "Стандартами безпеки дітей")}</a>. ${tx("Designated child-safety contact: ", "Визначений контакт із безпеки дітей: ")}${ph()}.</p>`,
+      body: `<p>${tx("Habit Duel has zero tolerance for child sexual abuse and exploitation. Child sexual abuse or exploitation material—real, generated, altered or illustrated—plus grooming, sexualization of minors, sextortion, trafficking, solicitation, requests, offers, links or instructions that facilitate such conduct are strictly prohibited. Do not upload, request, store, share or link to this material, including through profiles, habit names, rooms or invitations. We may immediately remove content, restrict rooms, suspend accounts, preserve necessary evidence and report apparent offences to competent authorities where required by law.", "Habit Duel має нульову толерантність до сексуального насильства та експлуатації дітей. Суворо заборонені матеріали сексуального насильства чи експлуатації дітей — реальні, згенеровані, змінені або ілюстровані, — а також грумінг, сексуалізація неповнолітніх, сексуальне вимагання, торгівля людьми, схиляння, запити, пропозиції, посилання чи інструкції, що сприяють таким діям. Заборонено завантажувати, запитувати, зберігати, поширювати чи додавати посилання на такі матеріали, зокрема у профілях, назвах звичок, кімнатах або запрошеннях. Ми можемо негайно видалити контент, обмежити кімнати, призупинити акаунти, зберегти необхідні докази та повідомити компетентні органи, якщо цього вимагає закон.")}</p>`,
     },
     {
       id: "privacy-evidence",
       title: { en: "7. Privacy and evidence", uk: "7. Приватність і докази" },
-      body: `<p>${tx("Reports should contain only information needed for review. Do not publicly investigate, redistribute or save illegal material. Habit Duel may preserve a limited report snapshot and related records for safety, dispute handling and legal compliance for ", "Скарги мають містити лише інформацію, потрібну для розгляду. Не розслідуй публічно, не поширюй і не зберігай незаконні матеріали. Habit Duel може зберігати обмежений знімок скарги та пов’язані записи для безпеки, вирішення спорів і виконання закону протягом ")}${ph()}.</p>
+      body: `<p>${tx("Reports should contain only information needed for review. Do not publicly investigate, redistribute or save illegal material. Habit Duel may preserve a limited report snapshot and related records only as long as reasonably needed for safety, dispute handling and legal compliance.", "Скарги мають містити лише інформацію, потрібну для розгляду. Не розслідуй публічно, не поширюй і не зберігай незаконні матеріали. Habit Duel може зберігати обмежений знімок скарги та пов’язані записи лише стільки, скільки обґрунтовано потрібно для безпеки, вирішення спорів і виконання закону.")}</p>
       <p>${tx("For more information, read the ", "Докладніше дивись у ")}<a href="../privacy-policy/">${tx("Privacy Policy", "Політиці конфіденційності")}</a>.</p>`,
     },
     {
       id: "contact-community",
       title: { en: "8. Contact", uk: "8. Контакти" },
-      body: `<ul><li>${tx("Safety contact: ", "Контакт із безпеки: ")}${ph()}</li><li>${tx("Child-safety contact: ", "Контакт із безпеки дітей: ")}${ph()}</li><li>${tx("Appeals: ", "Оскарження: ")}${ph()}</li><li>${tx("Operator and address: ", "Оператор і адреса: ")}${ph()}</li><li>${tx("Expected response targets: ", "Очікувані строки реагування: ")}${ph()}</li></ul>`,
+      body: `<p>${tx("Use the safety contact shown at the top of this page or the ", "Скористайся контактом із безпеки у верхній частині сторінки або ")}<a href="../support/">${tx("Support page", "сторінкою підтримки")}</a> ${tx("for safety reports and appeals.", "для скарг щодо безпеки й оскаржень.")}</p>`,
     },
   ],
 };
 communityPage.render = renderLegalPage(communityPage);
-
-const childSafetyPage = {
-  id: "child-safety",
-  route: "/child-safety/",
-  output: "child-safety/index.html",
-  label: { en: "Child Safety Standards", uk: "Стандарти безпеки дітей" },
-  heading: { en: "Child Safety Standards", uk: "Стандарти безпеки дітей" },
-  lead: {
-    en: "Our prohibition of child sexual abuse and exploitation and the process for reporting safety concerns.",
-    uk: "Наша заборона сексуального насильства й експлуатації дітей та порядок повідомлення про загрози.",
-  },
-  title: {
-    en: "Child Safety Standards — Habit Duel",
-    uk: "Стандарти безпеки дітей — Habit Duel",
-  },
-  description: {
-    en: "Habit Duel standards against child sexual abuse and exploitation, including reporting, response and law-enforcement cooperation.",
-    uk: "Стандарти Habit Duel проти сексуального насильства й експлуатації дітей, включно зі скаргами, реагуванням і співпрацею з правоохоронними органами.",
-  },
-  meta: [
-    { label: { en: "Effective date", uk: "Дата набрання чинності" }, value: ph() },
-    { label: { en: "Designated contact", uk: "Визначений контакт" }, value: ph() },
-    { label: { en: "Operator", uk: "Оператор" }, value: ph() },
-  ],
-  intro: {
-    en: "Habit Duel prohibits child sexual abuse and exploitation in every profile, habit, room, invitation and social interaction. These Standards supplement the Terms of Service and Community Guidelines.",
-    uk: "Habit Duel забороняє сексуальне насильство та експлуатацію дітей у кожному профілі, звичці, кімнаті, запрошенні й соціальній взаємодії. Ці Стандарти доповнюють Умови користування та Правила спільноти.",
-  },
-  sections: [
-    {
-      id: "zero-tolerance",
-      title: { en: "1. Zero-tolerance standard", uk: "1. Нульова толерантність" },
-      body: `<p>${tx("The following are strictly prohibited:", "Суворо заборонено:")}</p><ul><li>${tx("child sexual abuse material or child sexual exploitation material, whether real, generated, altered or illustrated where prohibited by law;", "матеріали сексуального насильства чи експлуатації дітей — реальні, згенеровані, змінені або ілюстровані, якщо вони заборонені законом;")}</li><li>${tx("grooming, sexualization of minors, sextortion, trafficking, solicitation or arranging sexual contact with a child;", "грумінг, сексуалізація неповнолітніх, сексуальне вимагання, торгівля людьми, схиляння або організація сексуального контакту з дитиною;")}</li><li>${tx("requests, offers, links, instructions or communities that facilitate child sexual abuse or exploitation;", "запити, пропозиції, посилання, інструкції або спільноти, що сприяють сексуальному насильству чи експлуатації дітей;")}</li><li>${tx("threats to distribute intimate material involving a minor or efforts to silence a child or reporter.", "погрози поширити інтимні матеріали за участю неповнолітнього або спроби змусити дитину чи заявника мовчати.")}</li></ul>
-      <p>${tx("This prohibition applies even when content is presented as a joke, role-play, habit title, room description, invitation or external link.", "Заборона діє навіть тоді, коли контент подано як жарт, рольову гру, назву звички, опис кімнати, запрошення чи зовнішнє посилання.")}</p>`,
-    },
-    {
-      id: "reporting-child-safety",
-      title: { en: "2. How to report", uk: "2. Як повідомити" },
-      body: `<ol class="step-list"><li>${tx("In Habit Duel, open the relevant user or room actions and choose Report.", "У Habit Duel відкрий дії відповідного користувача чи кімнати й вибери «Поскаржитися».")}</li><li>${tx("Choose the closest reason and provide only the context needed for safety review.", "Обери найближчу причину й додай лише контекст, потрібний для безпечного розгляду.")}</li><li>${tx("For a child-safety concern, also contact the designated address at ", "Для питань безпеки дітей також звернися на визначену адресу ")}${ph()}.</li></ol>
-      <div class="callout callout-danger"><strong>${tx("Immediate risk", "Негайний ризик")}</strong><p>${tx("If a child is in immediate danger, contact local emergency services or the competent child-protection authority first. Habit Duel is not an emergency service.", "Якщо дитині загрожує безпосередня небезпека, спершу звернися до місцевих екстрених служб або компетентного органу захисту дітей. Habit Duel не є екстреним сервісом.")}</p></div>
-      <p>${tx("Do not attach, forward, download or redistribute suspected illegal material through ordinary email. Provide account or room identifiers and a factual description; the safety team will explain a lawful secure process if more information is required.", "Не прикріплюй, не пересилай, не завантажуй і не поширюй підозрювані незаконні матеріали звичайною електронною поштою. Надай ідентифікатори акаунта чи кімнати та фактичний опис; команда безпеки пояснить законний захищений процес, якщо потрібна додаткова інформація.")}</p>`,
-    },
-    {
-      id: "response-child-safety",
-      title: { en: "3. Our response", uk: "3. Наше реагування" },
-      body: `<p>${tx("A confirmed or credible child-safety report may result in immediate content restriction, room restriction, account suspension, preservation of relevant evidence and escalation to the designated safety contact. We will not notify a reported user in a way that creates additional danger or interferes with a lawful investigation.", "Підтверджена або обґрунтована скарга щодо безпеки дітей може призвести до негайного обмеження контенту чи кімнати, призупинення акаунта, збереження відповідних доказів і передачі визначеному контакту з безпеки. Ми не повідомлятимемо користувача, на якого поскаржилися, так, щоб це створило додаткову небезпеку або завадило законному розслідуванню.")}</p>
-      <p>${tx("Designated reviewer, coverage hours, urgent response target and escalation procedure: ", "Визначений відповідальний, години роботи, строк термінового реагування й порядок ескалації: ")}${ph()}.</p>`,
-    },
-    {
-      id: "authorities",
-      title: { en: "4. Reporting to authorities", uk: "4. Повідомлення компетентним органам" },
-      body: `<p>${tx("Where required by applicable law, the operator will report apparent child sexual abuse or exploitation to the appropriate regional authority and cooperate with valid law-enforcement requests. Depending on jurisdiction, that may include NCMEC or another competent body.", "Якщо цього вимагає закон, оператор повідомлятиме про можливе сексуальне насильство чи експлуатацію дітей відповідному регіональному органу та співпрацюватиме з правоохоронними органами у відповідь на належно оформлені запити. Залежно від юрисдикції це може бути NCMEC або інший компетентний орган.")}</p>
-      <p>${tx("Formal reporting procedure, jurisdiction map and law-enforcement contact: ", "Формальна процедура повідомлення, перелік юрисдикцій і контакт для правоохоронців: ")}${ph()}.</p>`,
-    },
-    {
-      id: "preservation",
-      title: { en: "5. Evidence and privacy", uk: "5. Докази та приватність" },
-      body: `<p>${tx("We limit access to child-safety reports and preserve only what is reasonably needed for safety, legal reporting, investigations and appeals. Report data, snapshots and related security records are retained for ", "Ми обмежуємо доступ до скарг щодо безпеки дітей і зберігаємо лише те, що обґрунтовано потрібно для безпеки, юридичного повідомлення, розслідування та оскарження. Дані скарг, знімки й пов’язані записи безпеки зберігаються протягом ")}${ph()}.</p>
-      <p>${tx("Never conduct a public investigation or confront a suspected offender if that could endanger a child, destroy evidence or interfere with authorities.", "Не проводь публічного розслідування й не вступай у протистояння з підозрюваним, якщо це може наразити дитину на небезпеку, знищити докази або завадити органам.")}</p>`,
-    },
-    {
-      id: "age-design",
-      title: { en: "6. Age and product design", uk: "6. Вік і дизайн продукту" },
-      body: `<p>${tx("Habit Duel is not designed for children. The final minimum age and Google Play target-audience selection are ", "Habit Duel не призначений для дітей. Остаточний мінімальний вік і вибір цільової аудиторії в Google Play: ")}${ph()}${tx(". The current product does not technically verify age or collect date of birth, so it must not claim that age verification is active.", ". Поточний продукт технічно не перевіряє вік і не збирає дату народження, тому не можна стверджувати, що перевірка віку вже працює.")}</p>
-      <p>${tx("If prohibited underage use is discovered, the operator may restrict the account and delete associated data, subject to lawful safety preservation. Parental or guardian request process: ", "Якщо виявлено заборонене використання неповнолітнім, оператор може обмежити акаунт і видалити пов’язані дані з урахуванням законного збереження для безпеки. Порядок звернення батьків або опікунів: ")}${ph()}.</p>`,
-    },
-    {
-      id: "contact-child-safety",
-      title: { en: "7. Contacts and review", uk: "7. Контакти й перегляд" },
-      body: `<ul><li>${tx("Designated child-safety contact: ", "Визначений контакт із безпеки дітей: ")}${ph()}</li><li>${tx("General safety contact: ", "Загальний контакт із безпеки: ")}${ph()}</li><li>${tx("Law-enforcement contact: ", "Контакт для правоохоронців: ")}${ph()}</li><li>${tx("Operator and address: ", "Оператор і адреса: ")}${ph()}</li><li>${tx("Last operational review: ", "Останній операційний перегляд: ")}${ph()}</li></ul>
-      <p>${tx("These Standards will be reviewed when social features, target audience, applicable law or Google Play requirements change.", "Ці Стандарти переглядатимуться, коли змінюються соціальні функції, цільова аудиторія, застосовне право або вимоги Google Play.")}</p>`,
-    },
-  ],
-};
-childSafetyPage.render = renderLegalPage(childSafetyPage);
 
 const notFoundPage = {
   id: "not-found",
@@ -817,6 +721,5 @@ export const pages = [
   supportPage,
   termsPage,
   communityPage,
-  childSafetyPage,
   notFoundPage,
 ];

@@ -1527,31 +1527,6 @@ a {
   color: #8995ab;
 }
 
-.toast {
-  position: fixed;
-  z-index: 200;
-  right: 20px;
-  bottom: 20px;
-  max-width: min(420px, calc(100% - 40px));
-  transform: translateY(24px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 17px;
-  background: rgba(7, 16, 36, 0.94);
-  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.35);
-  color: #fff;
-  padding: 14px 17px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 180ms ease, transform 180ms ease;
-  -webkit-backdrop-filter: blur(18px);
-  backdrop-filter: blur(18px);
-}
-
-.toast.is-visible {
-  transform: translateY(0);
-  opacity: 1;
-}
-
 .not-found {
   display: grid;
   min-height: 100vh;
