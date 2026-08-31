@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://denyshv1.github.io/habit-tracker-landing/sitemap.xml

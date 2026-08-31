@@ -1,0 +1,17 @@
+{
+  "name": "Habit Duel",
+  "short_name": "Habit Duel",
+  "description": "A flexible habit tracker for time, counts, streaks and shared rooms.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0b1029",
+  "theme_color": "#10152e",
+  "icons": [
+    {
+      "src": "assets/app-icon.png",
+      "sizes": "1254x1254",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
