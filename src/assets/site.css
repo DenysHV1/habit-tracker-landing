@@ -1530,6 +1530,25 @@ a {
   max-width: 650px;
 }
 
+.not-found .invite-code {
+  display: block;
+  margin: 24px 0;
+  color: #c4b5fd;
+  font-size: clamp(26px, 7vw, 40px);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  overflow-wrap: anywhere;
+  user-select: all;
+}
+
+.invite-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
 .not-found-code {
   margin: 0;
   background: linear-gradient(120deg, #9c8cff, #42d0ff);

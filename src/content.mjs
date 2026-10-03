@@ -1,6 +1,8 @@
 export const site = {
   name: "Habit Duel",
   url: "https://denyshv1.github.io/habit-tracker-landing",
+  // Set only after the public Google Play listing is available.
+  playStoreUrl: "",
 };
 
 const tx = (en, uk) =>
@@ -266,7 +268,7 @@ const privacyPage = {
     { label: { en: "Privacy contact", uk: "Контакт із питань конфіденційності" }, value: publication.contact },
   ],
   intro: {
-    en: "This Privacy Policy explains how the operator of Habit Duel processes personal data when you use the mobile application, this website and related support channels. It must be read together with the Terms of Service and Community Guidelines.",
+    en: "This Privacy Policy explains how the operator of Habit Duel processes personal data when you use the mobile application, this website and related support channels. It must be read together with the Terms of Use and Community Guidelines.",
     uk: "Ця Політика конфіденційності пояснює, як оператор Habit Duel обробляє персональні дані під час використання мобільного застосунку, цього сайту та пов’язаних каналів підтримки. Її слід читати разом з Умовами користування та Правилами спільноти.",
   },
   sections: [
@@ -363,7 +365,7 @@ const privacyPage = {
     {
       id: "adult-only",
       title: { en: "9. Adults-only service", uk: "9. Сервіс лише для повнолітніх" },
-      body: `<p>${tx("Habit Duel is intended only for people aged 18 or older. Account creation requires an explicit adult confirmation and acceptance of the current Terms of Service and Privacy Policy. We record that confirmation and the accepted document versions, but we do not require your date of birth.", "Habit Duel призначений лише для осіб віком від 18 років. Для створення акаунта потрібно прямо підтвердити повноліття та прийняти чинні Умови користування й Політику конфіденційності. Ми фіксуємо це підтвердження та версії прийнятих документів, але не вимагаємо дату народження.")}</p>
+      body: `<p>${tx("Habit Duel is intended only for people aged 18 or older. Account creation requires three separate confirmations: that you are at least 18, that you accept the current Terms of Use, and that you acknowledge the Privacy Policy. We record those confirmations and the applicable document versions, but we do not require your date of birth.", "Habit Duel призначений лише для осіб віком від 18 років. Для створення акаунта потрібні три окремі підтвердження: що тобі виповнилося 18 років, що ти приймаєш чинні Умови користування та що підтверджуєш ознайомлення з Політикою конфіденційності. Ми фіксуємо ці підтвердження та відповідні версії документів, але не вимагаємо дату народження.")}</p>
       <p>${tx("Google Play may additionally restrict discovery, installation and purchases for accounts it identifies as belonging to minors. If we learn that an account belongs to a person under 18, we may restrict or close the account and delete its data, subject to limited safety, dispute and legal preservation duties. Contact us through the ", "Google Play також може обмежувати пошук, установлення та покупки для акаунтів, які система визначає як акаунти неповнолітніх. Якщо ми дізнаємося, що акаунт належить особі молодше 18 років, ми можемо обмежити або закрити його й видалити дані з урахуванням обмежених обов’язків щодо безпеки, спорів і збереження за законом. Звернися через ")}<a href="../support/">${tx("Support page", "сторінку підтримки")}</a>.</p>`,
     },
     {
@@ -524,15 +526,15 @@ const termsPage = {
   id: "terms",
   route: "/terms/",
   output: "terms/index.html",
-  label: { en: "Terms of Service", uk: "Умови користування" },
-  heading: { en: "Terms of Service", uk: "Умови користування" },
+  label: { en: "Terms of Use", uk: "Умови користування" },
+  heading: { en: "Terms of Use", uk: "Умови користування" },
   lead: {
     en: "The rules for using Habit Duel, accounts, community features and advertising.",
     uk: "Правила використання Habit Duel, акаунтів, функцій спільноти та реклами.",
   },
-  title: { en: "Terms of Service — Habit Duel", uk: "Умови користування — Habit Duel" },
+  title: { en: "Terms of Use — Habit Duel", uk: "Умови користування — Habit Duel" },
   description: {
-    en: "Habit Duel Terms of Service for accounts, habits, rooms, user content, advertising and account termination.",
+    en: "Habit Duel Terms of Use for accounts, habits, rooms, user content, advertising and account termination.",
     uk: "Умови користування Habit Duel щодо акаунтів, звичок, кімнат, контенту користувачів, реклами й припинення доступу.",
   },
   meta: [
@@ -553,7 +555,7 @@ const termsPage = {
     {
       id: "eligibility",
       title: { en: "2. Eligibility and accounts", uk: "2. Вік і акаунти" },
-      body: `<p>${tx("The minimum age for creating an account or using Habit Duel is ", "Мінімальний вік для створення акаунта або використання Habit Duel: ")}${publication.minimumAge}${tx(". By registering, including through Google sign-in, you explicitly confirm that you are at least 18 and accept the current Terms of Service and Privacy Policy. Habit Duel may record the confirmation, accepted versions and timestamps.", ". Реєструючись, зокрема через вхід Google, ти прямо підтверджуєш, що тобі виповнилося 18 років, і приймаєш чинні Умови користування та Політику конфіденційності. Habit Duel може фіксувати підтвердження, прийняті версії та час.")}</p>
+      body: `<p>${tx("The minimum age for creating an account or using Habit Duel is ", "Мінімальний вік для створення акаунта або використання Habit Duel: ")}${publication.minimumAge}${tx(". By registering, including through Google sign-in, you separately confirm that you are at least 18, accept the current Terms of Use, and acknowledge the Privacy Policy. Habit Duel may record the confirmations, applicable document versions and timestamps.", ". Реєструючись, зокрема через вхід Google, ти окремо підтверджуєш, що тобі виповнилося 18 років, приймаєш чинні Умови користування та підтверджуєш ознайомлення з Політикою конфіденційності. Habit Duel може фіксувати підтвердження, відповідні версії документів і час.")}</p>
       <ul><li>${tx("Do not create or use an account if you are under 18, and do not provide a false adult confirmation.", "Не створюй і не використовуй акаунт, якщо тобі немає 18 років, і не надавай неправдиве підтвердження повноліття.")}</li><li>${tx("Provide accurate information and keep it current.", "Надавай точну інформацію та оновлюй її.")}</li><li>${tx("Protect account credentials and verification codes; notify support of suspected misuse.", "Захищай облікові дані та коди підтвердження; повідомляй підтримку про підозріле використання.")}</li><li>${tx("Do not impersonate another person, create accounts to evade enforcement or transfer an account without permission.", "Не видавай себе за іншу особу, не створюй акаунти для обходу санкцій і не передавай акаунт без дозволу.")}</li><li>${tx("You are responsible for activity under your account to the extent allowed by law.", "Ти відповідаєш за активність у своєму акаунті в межах, дозволених законом.")}</li></ul>
       <p>${tx("If we reasonably determine that an account belongs to a person under 18 or that the adult confirmation was false, we may restrict or terminate the account and process deletion as described in the Privacy Policy.", "Якщо ми обґрунтовано встановимо, що акаунт належить особі молодше 18 років або підтвердження повноліття було неправдивим, ми можемо обмежити чи припинити акаунт і виконати видалення відповідно до Політики конфіденційності.")}</p>`,
     },
@@ -655,7 +657,7 @@ const communityPage = {
       id: "principles",
       title: { en: "1. Our principles", uk: "1. Наші принципи" },
       body: `<ul><li>${tx("Respect people and their privacy.", "Поважай людей і їхню приватність.")}</li><li>${tx("Share only content you have the right to use.", "Поширюй лише контент, на який маєш право.")}</li><li>${tx("Use rooms and social tools for genuine habit support, not manipulation or harm.", "Використовуй кімнати й соціальні інструменти для справжньої підтримки звичок, а не для маніпуляцій чи шкоди.")}</li><li>${tx("Do not exploit safety, reporting, virtual rewards or visibility controls.", "Не зловживай інструментами безпеки, скарг, віртуальними нагородами чи налаштуваннями видимості.")}</li></ul>
-      <p>${tx("Read these Guidelines together with the ", "Ці Правила слід читати разом з ")}<a href="../terms/">${tx("Terms of Service", "Умовами користування")}</a>.</p>`,
+      <p>${tx("Read these Guidelines together with the ", "Ці Правила слід читати разом з ")}<a href="../terms/">${tx("Terms of Use", "Умовами користування")}</a>.</p>`,
     },
     {
       id: "not-allowed",
@@ -728,6 +730,29 @@ const notFoundPage = {
 };
 
 export const pages = [
+  {
+    id: "invite", route: "/invite/", output: "invite/index.html", excludeFromSitemap: true,
+    title: { en: "Room invitation — Habit Duel", uk: "Запрошення до кімнати — Habit Duel" },
+    description: { en: "Open your room invitation in Habit Duel.", uk: "Відкрийте запрошення до кімнати в Habit Duel." },
+    render: ({ prefix }) => `<section class="not-found"><div class="not-found-card" data-room-invite>
+      <img src="${prefix}assets/brand-mark.png" width="72" height="72" alt="" style="margin:0 auto 20px" />
+      <h1>${tx("Room invitation", "Запрошення до кімнати")}</h1>
+      <div data-invite-valid hidden>
+        <p>${tx("Room code", "Код кімнати")}</p>
+        <p class="invite-code" data-invite-code></p>
+        <div class="invite-actions">
+          <a class="button button-primary" href="#" data-invite-open>${tx("Open app", "Відкрити застосунок")}</a>
+          <button class="button button-secondary" type="button" data-invite-copy>${tx("Copy code", "Копіювати код")}</button>
+        </div>
+        <p data-invite-copied hidden role="status">${tx("Copied", "Скопійовано")}</p>
+        <p data-invite-copy-error hidden role="status">${tx("Select the code above to copy it.", "Виділіть код вище, щоб скопіювати його.")}</p>
+        <p>${tx("No app yet? Keep the code and enter it in the room search after installing.", "Ще немає застосунку? Збережіть код і введіть його в пошуку кімнат після встановлення.")}</p>
+        ${/^https:\/\/play\.google\.com\/store\/apps\/details\?id=[a-zA-Z0-9._]+$/.test(site.playStoreUrl) ? `<a class="button button-secondary" href="${site.playStoreUrl}">Google Play</a>` : ""}
+      </div>
+      <p data-invite-invalid>${tx("This invitation link is incomplete or invalid.", "Посилання на запрошення неповне або недійсне.")}</p>
+      <p class="hero-note">${tx("Adults 18+", "Лише для повнолітніх 18+")}</p>
+    </div></section>`,
+  },
   homePage,
   privacyPage,
   deletionPage,

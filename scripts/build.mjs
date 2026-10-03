@@ -118,6 +118,7 @@ const renderDocument = (page) => {
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#10152e" />
+  ${page.id === "invite" ? '<meta name="robots" content="noindex, nofollow" /><meta name="referrer" content="no-referrer" />' : ""}
   <meta name="description" content="${escapeAttribute(page.description.en)}" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Habit Duel" />
@@ -143,6 +144,7 @@ const renderDocument = (page) => {
   <main id="main-content">${body}</main>
   ${footer}
   <script src="${prefix}assets/site.js" defer></script>
+  ${page.id === "invite" ? `<script src="${prefix}assets/invite.js" defer></script>` : ""}
 </body>
 </html>`;
 };

@@ -108,7 +108,7 @@ for (const asset of [
 
 const sitemap = await readFile(path.join(dist, "sitemap.xml"), "utf8").catch(() => "");
 for (const page of pages.filter((entry) => !entry.excludeFromSitemap)) {
-  assert(sitemap.includes(`${site.url}${page.route}`), `sitemap.xml: missing ${page.route}`);
+  assert(page.excludeFromSitemap ? !sitemap.includes(`${site.url}${page.route}`) : sitemap.includes(`${site.url}${page.route}`), `sitemap.xml: incorrect inclusion for ${page.route}`);
 }
 
 if (failures.length) {
