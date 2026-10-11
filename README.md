@@ -9,7 +9,7 @@ site is static, has no runtime dependencies and is built for GitHub Pages.
 - `/privacy-policy/` — Privacy Policy;
 - `/account-deletion/` — in-app and external account-deletion instructions;
 - `/support/` — support contacts and FAQ;
-- `/terms/` — Terms of Service;
+- `/terms/` — Terms of Use;
 - `/community-guidelines/` — user-generated content and community standards;
 - `/404.html` — branded error page;
 
